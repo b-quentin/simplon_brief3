@@ -3,10 +3,9 @@ flowchart LR
 subgraph OUTSIDE
 A[Admin]
 end
-A -. SSH-..- B
 subgraph AZURE
     B[BASTION]
-    B-.SSH-..->C
+    B-.SSH-.->C
     C---D
     subgraph APPLI
     C[APPLI]
