@@ -16,6 +16,7 @@ subgraph AZURE
         E[Sentinel]
         C <-- logging --->E
         D <-- logging --->E
+        B <-- logging --->E
     end
 end
 ```
