@@ -19,6 +19,14 @@ az network vnet create \
 az network public-ip create -g resGroupName -n MyIp --dns-name MyLabel --allocation-method Static
 ```  
 
+[Création NSG](https://docs.microsoft.com/en-us/cli/azure/network/nsg?view=azure-cli-latest#az-network-nsg-create) :  
+```console
+az network nsg create --name
+                      --resource-group
+                      [--location]
+                      [--tags]
+```  
+
 [Création Network Interface Card](https://docs.microsoft.com/en-us/cli/azure/network/nic?view=azure-cli-latest#az-network-nic-create)  
 ```console
 az network nic create -g resGroupName --vnet-name MyVnet --subnet MySubnet -n MyNic \
