@@ -35,7 +35,7 @@ graph BT
 
         end
 
-        subgraph monitoring
+        subgraph monitoring[Monitoring]
             service_sentinel[Azure Sentinel: service_sentinel]
             service_insights[Azure Application: Insights: service_insights]
             service_vault[Coffre Recovery Services]
@@ -81,8 +81,6 @@ graph BT
 
 ### 1.2 Liste des ressources.
 
-ICI NOA TRAVAILLE PAS TOUCHE
-
 | Nom | Type | Description | Annotation |
 | -------- | -------- | -------- | - |
 |   BRIEF_3  | Resource group |      | |
@@ -97,7 +95,7 @@ ICI NOA TRAVAILLE PAS TOUCHE
 | nsg_public_app     | Network Security Group     |      | |
 | nic_app_public    | Network Interface  |      |  |
 | nic_app_private    | Network Interface  |      | Permet la communication en SSH |
-| vm_appli | Virtual Machine | VM contenant l'application Jenkins |
+| vm_appli | Virtual Machine | Machine virtuelle contenant l'application Jenkins |
 | Sentinel | Azure Sentinel| |
 | Insight | Azure Insight | |
 | Vault | Coffre Recovery Service |  |
@@ -126,9 +124,3 @@ ICI NOA TRAVAILLE PAS TOUCHE
     - [ ] Ecriture du script.
     - [ ] Test.
     - [ ] Documentation.
-
-[Lien vers doc Microsoft pour déployer Bastion](https://docs.microsoft.com/en-us/azure/bastion/create-host-cli)
-Penser au --help :
-![img_bastion](https://github.com/b-quentin/simplon_brief3/blob/master/IMG/BASTION/screen0_bastion_help.png?raw=trueg)
-
-[Doc commande créa / chargement ssh](https://docs.microsoft.com/fr-fr/azure/virtual-machines/ssh-keys-azure-cli)
