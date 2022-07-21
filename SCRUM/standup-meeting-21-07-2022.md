@@ -1,6 +1,6 @@
 **Récap journée du 20-07-2022**  
 
-Priorisation de l établissement de la liste des ressources nécessaires au projet, schématisation de la mise en place de l'infrastructure demandée autour de l'application Jenkins  
+Priorisation de l'établissement de la liste des ressources nécessaires au projet, schématisation de la mise en place de l'infrastructure demandée autour de l'application Jenkins  
 
 **Question de Paul : que mettre dans la liste des ressources ?**  
 
