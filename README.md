@@ -38,6 +38,7 @@ graph BT
         subgraph monitoring
             service_sentinel[Azure Sentinel: service_sentinel]
             service_insights[Azure Application: Insights: service_insights]
+            service_vault[Coffre Recovery Services]
         end
 
         subgraph Resources
@@ -52,6 +53,8 @@ graph BT
             vm_app[Jenkins: vm_app]
             nic_app_public(Network Interface: nic_app_public)
             nic_app_private(Network Interface: nic_app_private)
+
+            service_vault -.-> vm_app
 
             service_bastion -.-> subnet_private
             subnet_private -.-> nic_app_private
@@ -105,9 +108,23 @@ ICI NOA TRAVAILLE PAS TOUCHE
     - [ ] Lister les ressources.
     - [ ] Lister les tâches.
     - [ ] Assigner les tâches.
-    - [ ] Créer la synthèse d'utilisation
     - [x] Quel langage utiliser pour le scripting ? --> **Python**
 
+- [ ] Production du script python d'automatisation de l'infrastructure.
+    - [ ] Période de reflexion.
+        - [ ] Sélection des différentes commandes.
+        - [ ] Préparation du script: mettre en place l'architecture de l'application partie: infrastructure.
+    - [ ] Rédaction du script.
+    - [ ] Insérer les différentes commandes dans le script.
+    - [ ] Test.
+    - [ ] Documentation.
+
+- [ ] Production du script python d'automatisation de l'installation de l'application et ses dépendances, ainsi que certbot sur la machine.
+    - [ ] Période de reflexion.
+        - [ ] Préparation du script: mettre en place l'architecture de l'application partie: ssh.
+    - [ ] Ecriture du script.
+    - [ ] Test.
+    - [ ] Documentation.
 
 [Lien vers doc Microsoft pour déployer Bastion](https://docs.microsoft.com/en-us/azure/bastion/create-host-cli)
 Penser au --help :
