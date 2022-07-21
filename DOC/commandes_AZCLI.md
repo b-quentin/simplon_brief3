@@ -27,7 +27,7 @@ az network nic create -g resGroupName --vnet-name MyVnet --subnet MySubnet -n My
 
 [Création VM](https://docs.microsoft.com/en-us/cli/azure/vm?view=azure-cli-latest#az-vm-create)  
 
-```
+```console
 az vm create --name
              --resource-group
              [...]
