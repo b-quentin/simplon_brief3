@@ -7,6 +7,7 @@ Réalisé par : Alain, Noa, Paul et Quentin
 ## 1 Plan d'action.
 
 ### 1.1 Topologie de l'infrastructure.
+
 ```mermaid
 graph BT
     subgraph Internet
@@ -52,7 +53,6 @@ graph BT
             nic_app_public(Network Interface: nic_app_public)
             nic_app_private(Network Interface: nic_app_private)
 
-
             service_bastion -.-> subnet_private
             subnet_private -.-> nic_app_private
             nic_app_private -.-> vm_app
@@ -64,14 +64,18 @@ graph BT
             service_insights -.-> service_bastion
         end
 
-
-
         nic_app_public --> vm_app
-
-
-
     end
+
+    classDef primary fill:#faa,stroke:#f66,stroke-width:4px,color:#fff,stroke-dasharray: 5 5;
+    class ip_bastion_public,Administration,nsg_public_bastion,nsg_private,nic_app_private, primary;
+    classDef secondary fill:#aff,stroke:#025,stroke-width:2px,color:#003;
+    class ip_app_public,nsg_public_app,nic_app_public, secondary;
+    classDef tertiary fill:#afa,stroke:#66f,stroke-width:4px,color:#000,stroke-dasharray: 5 5;
+    class monitoring,BBBB,CCCC, tertiary;
+
 ```
+
 ### 1.2 Liste des ressources.
 
 ICI NOA TRAVAILLE PAS TOUCHE
@@ -105,8 +109,8 @@ ICI NOA TRAVAILLE PAS TOUCHE
     - [x] Quel langage utiliser pour le scripting ? --> **Python**
 
 
-[Lien vers doc Microsoft pour déployer Bastion](https://docs.microsoft.com/en-us/azure/bastion/create-host-cli)  
-Penser au --help :  
-![img_bastion](https://github.com/b-quentin/simplon_brief3/blob/master/IMG/BASTION/screen0_bastion_help.png?raw=trueg)  
+[Lien vers doc Microsoft pour déployer Bastion](https://docs.microsoft.com/en-us/azure/bastion/create-host-cli)
+Penser au --help :
+![img_bastion](https://github.com/b-quentin/simplon_brief3/blob/master/IMG/BASTION/screen0_bastion_help.png?raw=trueg)
 
 [Doc commande créa / chargement ssh](https://docs.microsoft.com/fr-fr/azure/virtual-machines/ssh-keys-azure-cli)
