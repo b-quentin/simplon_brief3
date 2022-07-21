@@ -100,6 +100,7 @@ ICI NOA TRAVAILLE PAS TOUCHE
 | vm_appli | Virtual Machine | VM contenant l'application Jenkins |
 | Sentinel | Azure Sentinel| |
 | Insight | Azure Insight | |
+| Vault | Coffre Recovery Service |  |
 
 ### 1.3 Liste des tâches.
 - [ ] Planifier les actions et quelles ressources mettre en place.
