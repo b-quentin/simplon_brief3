@@ -47,15 +47,18 @@ graph BT
             end
 
             subgraph nsg_public_app
-                    subnet_public_app((subnet_public))
+   
+            subnet_public_app((subnet_public))
             end
-
+            
+            disk(Disque de donnée)  
+            
             vm_app[Jenkins: vm_app]
             nic_app_public(Network Interface: nic_app_public)
             nic_app_private(Network Interface: nic_app_private)
 
             service_vault -.-> vm_app
-
+            disk -.-> vm_app
             service_bastion -.-> subnet_private
             subnet_private -.-> nic_app_private
             nic_app_private -.-> vm_app
@@ -95,6 +98,7 @@ graph BT
 | nsg_public_app     | Network Security Group     |      | |
 | nic_app_public    | Network Interface  |      |  |
 | nic_app_private    | Network Interface  |      | Permet la communication en SSH |
+| disk_app | disk | | |
 | vm_appli | Virtual Machine | Machine virtuelle contenant l'application Jenkins |
 | Sentinel | Azure Sentinel| |
 | Insight | Azure Insight | |
@@ -103,24 +107,26 @@ graph BT
 ### 1.3 Liste des tâches.
 - [ ] Planifier les actions et quelles ressources mettre en place.
 
-    - [x] Créer la topologie de l'infrastructure.
-    - [ ] Lister les ressources.
-    - [ ] Lister les tâches.
-    - [ ] Assigner les tâches.
+    - [x] Créer la topologie de l'infrastructure
+    - [ ] Lister les ressources
+    - [ ] Lister les tâches
+    - [ ] Assigner les tâches
     - [x] Quel langage utiliser pour le scripting ? --> **Python**
 
-- [ ] Production du script python d'automatisation de l'infrastructure.
-    - [ ] Période de reflexion.
-        - [ ] Sélection des différentes commandes.
-        - [ ] Préparation du script: mettre en place l'architecture de l'application partie: infrastructure.
-    - [ ] Rédaction du script.
-    - [ ] Insérer les différentes commandes dans le script.
-    - [ ] Test.
-    - [ ] Documentation.
+- [ ] Production du script python d'automatisation du déploiement de l'infrastructure.
+    - [ ] Période de reflexion
+        - [ ] Sélection des différentes commandes ainsi que l'ordre dans lequel elle seront appelées
+        - [ ] Préparation du script : mise en place de l'architecture du programme
+    - [ ] Rédaction du script
+    - [ ] Test du script
+    - [ ] Rédaction de la documentation
 
-- [ ] Production du script python d'automatisation de l'installation de l'application et ses dépendances, ainsi que certbot sur la machine.
+- [ ] Production du script python d'automatisation de l'installation de l'application et ses dépendances
     - [ ] Période de reflexion.
-        - [ ] Préparation du script: mettre en place l'architecture de l'application partie: ssh.
-    - [ ] Ecriture du script.
-    - [ ] Test.
-    - [ ] Documentation.
+        - [ ] Sélection des différentes commandes ainsi que l'ordre dans lequel elle seront appelées
+            - [ ] Installation de certbot
+            - [ ] Rétention des logs
+            - [ ] Publication des clés publiques (ssh)
+    - [ ] Rédaction du script
+    - [ ] Test du script
+    - [ ] Rédaction de la documentation
