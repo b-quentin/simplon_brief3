@@ -10,8 +10,17 @@ La liste des ressources comprend les ressources explicites "Azure" que nous allo
 
 Penser à tous cloner le repository GIT, et tous les soirs push le document partagé sur hackmd  
 
+**Idée de Paul : Plugin VSCode Azure Tools**
+
+Azure tools permet de simuler et tester un script sans intéragir avec l'infra  
+
 **Prévisionnel 21-07-2022**  
 
+Finir le prévisonnel des taches à accomplir
 Présentation du début de plannification au Product Owner,  
 Lister les commandes nécessaires à la réalisation du script de déploiement de Bastion  
+
+**Prévisonnel global**
+
+Voir pour faire les phases de test via Azure Tools sur VSCode,  
 
