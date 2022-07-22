@@ -1,5 +1,9 @@
 {
-    "rg_name": "BRIEF_3",
+    "rg_name": "GR3_BRIEF_3",
+    "vnet_name": "BastionVNet",
     "rg_location": "westeurope",
-    "vm_name": "vm_app"
+    "vm_name": "vm_app",
+    "vnet_prefix": "10.0.0.0/16",
+    "subnet-name": "G3B3BastionSubnet ",
+    "bastion_subnet": "10.0.3.0/26"
 }
