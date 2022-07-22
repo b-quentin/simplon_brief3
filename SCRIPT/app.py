@@ -1,64 +1,29 @@
-from ast import For
-import subprocess
 import json
+import subprocess
 
-def exec(cmd):
-    cmd = subprocess.check_output(cmd, shell=True)
-    cmd = json.loads(cmd)
+with open("./init.json", "r") as file:
+    data = json.load(file)
 
-    return cmd
+def execute_command(command):
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
 
+    r = {"output_str": process.communicate()[0].decode(), "exit_code": process.returncode}
+    
+    print(r)
 
-def load_json():
-    # Opening JSON file
-    f = open('config.json',)
+    return r
 
-    # returns JSON object as
-    # a dictionary
-    data = json.load(f)
+commands_list = [
+    "az group create --name " + data["rg_name"] + " --location " + data["rg_location"],
+    "az vm create --name " + data["vm_name"] + " "
+                + "--resource-group " + data["rg_name"] + " "
+                + "--image Debian:debian-10:10:latest "
+                + "--nic-delete-option delete "
+                + "--os-disk-delete-option delete "
+                + "--data-disk-delete-option delete "
+                + "--generate-ssh-keys",
+    "az group delete --resource-group " + data["rg_name"] + " --yes"        
+]
 
-    # Closing file
-    f.close()
-
-    return data
-
-def generate_cmd(data):
-    cmd = ""
-    for dt in data:
-        if isinstance(data[dt], str):
-            cmd += " --" + dt + " " + data[dt]
-
-        elif isinstance(data[dt], list):
-            cmd += " --" + dt
-            for dt_list in data[dt]:
-                cmd += " " + dt_list + "\n"
-
-        elif isinstance(data[dt], bool):
-            cmd += " --" + dt
-            if data[dt]:
-                cmd += ' true'
-            else:
-                cmd += ' false'
-
-        elif isinstance(data[dt], dict):
-            for opt in data[dt].keys():
-                print(data[dt][opt])
-                if isinstance(data[dt][opt], str):
-                    cmd += " --" + dt + " " + data[dt]
-
-                elif isinstance(data[dt][opt], list):
-                    print('test')
-                    cmd += " --" + dt
-                    for dt_list in data[dt]:
-                        cmd += " " + dt_list + "\n"
-
-                elif isinstance(data[dt][opt], bool):
-                    cmd += " --" + dt
-                    if data[dt]:
-                        cmd += ' true'
-                    else:
-                        cmd += ' false'
-
-test = load_json()
-
-generate_cmd(test['group'][0])
+for i in range(len(commands_list)):
+    execute_command(commands_list[i])
