@@ -2,7 +2,7 @@
 title: Jenkins
 theme: slide
 paginate: true
-footer: Quentin BESSE
+footer: Paul Lion
 header: Simplon
 marp: true
 size: 16:9
