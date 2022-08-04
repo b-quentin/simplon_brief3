@@ -1,132 +1,156 @@
-# Brief 3
+---
+title: Jenkins
+theme: slide
+paginate: true
+footer: Quentin BESSE
+header: Simplon
+marp: true
+size: 16:9
+---
 
-[toc]
+# 1. Introduction.
+**Jenkins.**
+**Azure.**
+**Python.**
+*Mise en place par Paul et Quentin.*
 
-Réalisé par : Alain, Noa, Paul et Quentin
-
-## 1 Plan d'action.
-
-### 1.1 Topologie de l'infrastructure.
-
-```mermaid
-graph BT
-    subgraph Internet
-        ip_bastion_public[Adresse Ip Publique: ip_bastion_public]
-        ip_app_public[Adresse Ip Publique: ip_app_public]
-    end
-
-
-    ip_bastion_public --> subnet_bastion
-    ip_app_public --> subnet_public_app
-
-    subnet_public_app --> nic_app_public
-    subnet_bastion --> service_bastion
+---
+# Sommaire
+* 1 Introduction.
+* 2 Missions.
+* 3 Objectifs.
+* 4 Ressouces.
+* 5 Déploiment de l'infrastructure.
+* 6 Installation de l'application et ses dépendances.
+* 7 Retrospective de sprint.
 
 
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 2. Mission.
+Bonjour,
+Tu as bien travaillé pour le Nextcloud de Lifesense, merci !
+J'ai regardé les demandes de déploiements d'applications et j'ai remarqué qu'il y a beaucoup de tickets qui
+concernent ces 3 applications : Nextcloud, Gitea et Jenkins.
+On pourrait gagner beaucoup de temps à les automatiser !
+Est-ce que tu peux en choisir une et préparer un script de déploiement complètement automatisé ?
+Je compte sur toi.
+Cordialement,
+Le chef
 
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 3. Objectifs.
+# 3.1 Managements.
+* Présenté votre travail
+* Pratiqué Scrum
+* Abordé la gestion de projet
+* Abordé la communication en équipe
+* Mieux anticipé vos actions que dans le brief précédent
 
-    subgraph network
-        subgraph Administration
-            subgraph nsg_public_bastion
-                subnet_bastion((AzureBastionSubnet))
-            end
+---
+# 3. Objectifs.
+# 3.1 Techniques.
+* Déployé de nouvelles ressources dans Azure
+* Implémenté des scripts
+* Utilisé un bastion
+* Mis en place un moyen de surveillance de la disponibilité de l'application
+* Configuré la rétention des logs
+* Parsé du JSON
+* Utilisé certbot pour déployer un certificat TLS
 
-            service_bastion[Azure Bastion: service_bastion]
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 3. Topologie infrastructure.
+![](./IMG/infra.png)
 
-        end
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 4. Ressources.
+* Un réseau.
+* Deux sous-réseaux.
+* Deux ip publiques.
+* Deux groupes de sécurité réseau.
+* Deux cartes réseaux.
+* Une machine virtuelle.
+* Un service Insight.
 
-        subgraph monitoring[Monitoring]
-            service_sentinel[Azure Sentinel: service_sentinel]
-            service_insights[Azure Application: Insights: service_insights]
-            service_vault[Coffre Recovery Services]
-        end
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 5. Déploiment de l'infrastructure.
+## 5.1 Outils:
+* Utilisation de Python.
+* Utlisation de d'Azure CLI.
 
-        subgraph Resources
-            subgraph nsg_private
-                subnet_private((subnet_private))
-            end
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 5. Déploiment de l'infrastructure.
+## 5.2 Organisation du code:
+* Fonctions
+* Main process
 
-            subgraph nsg_public_app
-   
-            subnet_public_app((subnet_public))
-            end
-            
-            disk(Disque de donnée)  
-            
-            vm_app[Jenkins: vm_app]
-            nic_app_public(Network Interface: nic_app_public)
-            nic_app_private(Network Interface: nic_app_private)
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 5. Déploiment de l'infrastructure.
+## 5.3 Difficultés:
+* Installation de bastion.
+* Activation du tunnel sur bastion.
+* Utilisation du tunnel.
+* Problème de size indisponible.
+* Paramiko.
 
-            service_vault -.-> vm_app
-            disk -.-> vm_app
-            service_bastion -.-> subnet_private
-            subnet_private -.-> nic_app_private
-            nic_app_private -.-> vm_app
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 6. Installation de l'application et ses dépendances
+## 6.1 Outils:
+* Python.
+* Paramiko.
+    * ssh.
+    * open_sftp.
+* Nginx.
+* Jenkins.
+* Certbot.
+* Regex.
 
-            service_sentinel -.-> vm_app
-            service_sentinel -.-> service_bastion
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 6. Installation de l'application et ses dépendances
+## 6.2 Organisation du code:
+* Fonction.
+* Main process
+* Fichier de configuration.
 
-            service_insights -.-> vm_app
-            service_insights -.-> service_bastion
-        end
+---
+<!-- _backgroundColor: #282a36 -->
+<!-- _color: #f8f8f2 -->
+# 6. Installation de l'application et ses dépendances
+## 6.3 Difficultés:
 
-        nic_app_public --> vm_app
-    end
+* Paramétrages du port d'écoute de l'application Jenkins.
+* Paramétrage du certificat TLS.
+    * Installation certbot.
+    * Problème de sur-utlisation du fqdn.
 
-    classDef primary fill:#faa,stroke:#f66,stroke-width:4px,color:#fff,stroke-dasharray: 5 5;
-    class ip_bastion_public,Administration,nsg_public_bastion,nsg_private,nic_app_private, primary;
-    classDef secondary fill:#aff,stroke:#025,stroke-width:2px,color:#003;
-    class ip_app_public,nsg_public_app,nic_app_public, secondary;
-    classDef tertiary fill:#afa,stroke:#66f,stroke-width:4px,color:#000,stroke-dasharray: 5 5;
-    class monitoring,BBBB,CCCC, tertiary;
+---
+# 7 Retrospective de sprint.
+# 7.1 Qu'est ce qui c'est bien passé ?
+* On a bien échangé sur les différents problémes que l'on a rencontré.
+* On a partagé et on s'est soutenu tout le long du projet.
+* On a travaillé ensemble sur la partie deploiment de l'infrastructure et sur le début de la rédaction du projet.
 
-```
-
-### 1.2 Liste des ressources.
-
-| Nom | Type | Description | Annotation |
-| -------- | -------- | -------- | - |
-|   BRIEF_3  | Resource group |      | |
-| vnet_3     | Virtual Network | Réseau virtuel | Réseau virtuel contenant toute l'infrastructure |
-| AzureBastionSubnet | Virtual Network | Sous-réseau du bastion    | Réseau virtuel réservé au bastion |
-| PrivateSubnet     | Virtual Network     |      | Contient l'application |
-| AppSubnet  | Virtual Network    | pour la connection HTTP des utilisateurs     |  |
-| public_ip_app | Public IP address |  |IP Publique permettant l'accès depuis le navigatteur en HTTPS |
-| public_ip_bas | Public IP address |  | IP Publique du bastion|
-| nsg_public_bas     | Network Security Group   |      | |
-| nsg_private    | Network Security Group     |      | |
-| nsg_public_app     | Network Security Group     |      | |
-| nic_app_public    | Network Interface  |      |  |
-| nic_app_private    | Network Interface  |      | Permet la communication en SSH |
-| disk_app | disk | | |
-| vm_appli | Virtual Machine | Machine virtuelle contenant l'application Jenkins |
-| Sentinel | Azure Sentinel| |
-| Insight | Azure Insight | |
-| Vault | Coffre Recovery Service |  |
-
-### 1.3 Liste des tâches.
-- [ ] Planifier les actions et quelles ressources mettre en place.
-
-    - [x] Créer la topologie de l'infrastructure
-    - [ ] Lister les ressources
-    - [ ] Lister les tâches
-    - [ ] Assigner les tâches
-    - [x] Quel langage utiliser pour le scripting ? --> **Python**
-
-- [ ] Production du script python d'automatisation du déploiement de l'infrastructure.
-    - [ ] Période de reflexion
-        - [ ] Sélection des différentes commandes ainsi que l'ordre dans lequel elle seront appelées
-        - [ ] Préparation du script : mise en place de l'architecture du programme
-    - [ ] Rédaction du script
-    - [ ] Test du script
-    - [ ] Rédaction de la documentation
-
-- [ ] Production du script python d'automatisation de l'installation de l'application et ses dépendances
-    - [ ] Période de reflexion.
-        - [ ] Sélection des différentes commandes ainsi que l'ordre dans lequel elle seront appelées
-            - [ ] Installation de certbot
-            - [ ] Rétention des logs
-            - [ ] Publication des clés publiques (ssh)
-    - [ ] Rédaction du script
-    - [ ] Test du script
-    - [ ] Rédaction de la documentation
+---
+# 7 Retrospective de sprint.
+# 2. Qu'est ce qui ne c'est pas bien passé ?
+* On a fais le projet chacun de notre coté, on n'a pas assez travaillé ensemble. Du coup on a perdu beaucoup de temps alors que si on avait étè plus collaboratif on aurait pu tout faire et bien plus.
+* Répartition des taches. Il était difficile de répartir les taches car tout le monde voulait tout voir pour pouvoir apprendre.
+* Sur la partie deploiment de l'application nous avons utilisé des stratégies différentes ce qui a rendu la collaboration difficile.
+* Scrum: Néccésité d'avoir le même scrum master tout le long du processus pour organiser les tâches, le timming, et la communication dans le groupe.
