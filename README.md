@@ -1,6 +1,10 @@
 # Brief 3
 
-[toc]
+- [Brief 3](#brief-3)
+  - [1 Plan d'action.](#1-plan-daction)
+    - [1.1 Topologie de l'infrastructure.](#11-topologie-de-linfrastructure)
+    - [1.2 Liste des ressources.](#12-liste-des-ressources)
+    - [1.3 Liste des tâches.](#13-liste-des-tâches)
 
 Réalisé par : Alain, Noa, Paul et Quentin
 
@@ -108,28 +112,28 @@ graph BT
 - [ ] Planifier les actions et quelles ressources mettre en place.
 
     - [x] Créer la topologie de l'infrastructure
-    - [ ] Lister les ressources
-    - [ ] Lister les tâches
-    - [ ] Assigner les tâches
+    - [x] Lister les ressources
+    - [x] Lister les tâches
+    - [x] Assigner les tâches
     - [x] Quel langage utiliser pour le scripting ? --> **Python**
 
-- [ ] Production du script python d'automatisation du déploiement de l'infrastructure.
-    - [ ] Période de reflexion
+- [x] Production du script python d'automatisation du déploiement de l'infrastructure.
+    - [x] Période de reflexion
         - [ ] Sélection des différentes commandes ainsi que l'ordre dans lequel elle seront appelées
         - [ ] Préparation du script : mise en place de l'architecture du programme
-    - [ ] Rédaction du script
-    - [ ] Test du script
-    - [ ] Rédaction de la documentation
+    - [x] Rédaction du script
+    - [x] Test du script
+    - [x] Rédaction de la documentation
 
-- [ ] Production du script python d'automatisation de l'installation de l'application et ses dépendances
-    - [ ] Période de reflexion.
-        - [ ] Sélection des différentes commandes ainsi que l'ordre dans lequel elle seront appelées
-            - [ ] Installation de certbot
-            - [ ] Rétention des logs
-            - [ ] Publication des clés publiques (ssh)
-    - [ ] Rédaction du script
-    - [ ] Test du script
-    - [ ] Rédaction de la documentation
+- [x] Production du script python d'automatisation de l'installation de l'application et ses dépendances
+    - [x] Période de reflexion.
+        - [x] Sélection des différentes commandes ainsi que l'ordre dans lequel elle seront appelées
+            - [x] Installation de certbot
+            - [x] Rétention des logs
+            - [x] Publication des clés publiques (ssh)
+    - [x] Rédaction du script
+    - [x] Test du script
+    - [x] Rédaction de la documentation
 
 <!--
 [Lien vers doc Microsoft pour déployer Bastion](https://docs.microsoft.com/en-us/azure/bastion/create-host-cli)
