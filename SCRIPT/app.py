@@ -661,7 +661,7 @@ def send_nginx_config():
 #        Main process            #
 ##################################
 
-"""
+
 # Edit config file with args
 edit_config(args.fqdn)
 
@@ -700,7 +700,7 @@ set_activate_module()
 create_app_insight(group, workspace['name'])
 
 # End infrastructure
-"""
+
 ##################################
 #          Tunneling             #
 ##################################

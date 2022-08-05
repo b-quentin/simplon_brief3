@@ -22,12 +22,10 @@ size: 16:9
 * 4 Ressouces.
 * 5 Déploiment de l'infrastructure.
 * 6 Installation de l'application et ses dépendances.
-* 7 Retrospective de sprint.
+* 7 Retrospective du sprint.
 
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 2. Mission.
 Bonjour,
 Tu as bien travaillé pour le Nextcloud de Lifesense, merci !
@@ -40,8 +38,6 @@ Cordialement,
 Le chef
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 3. Objectifs.
 # 3.1 Managements.
 * Présenté votre travail
@@ -62,42 +58,34 @@ Le chef
 * Utilisé certbot pour déployer un certificat TLS
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 3. Topologie infrastructure.
 ![](./IMG/infra.png)
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 4. Ressources.
-* Un réseau.
-* Deux sous-réseaux.
+* Un groupe de ressource azure.
+* Un réseau. (10.0.1.0/24)
+* Deux sous-réseaux. (Bastion: 10.0.1.0/26 App: 10.0.1.64/26)
 * Deux ip publiques.
 * Deux groupes de sécurité réseau.
 * Deux cartes réseaux.
-* Une machine virtuelle.
+* Disque additionnel.
+* Une machine virtuelle linux ubuntuLTS.
 * Un service Insight.
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 5. Déploiment de l'infrastructure.
 ## 5.1 Outils:
 * Utilisation de Python.
-* Utlisation de d'Azure CLI.
+* Utlisation d'Azure CLI.
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 5. Déploiment de l'infrastructure.
 ## 5.2 Organisation du code:
 * Fonctions
 * Main process
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 5. Déploiment de l'infrastructure.
 ## 5.3 Difficultés:
 * Installation de bastion.
@@ -107,8 +95,6 @@ Le chef
 * Paramiko.
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 6. Installation de l'application et ses dépendances
 ## 6.1 Outils:
 * Python.
@@ -121,8 +107,6 @@ Le chef
 * Regex.
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 6. Installation de l'application et ses dépendances
 ## 6.2 Organisation du code:
 * Fonction.
@@ -130,8 +114,6 @@ Le chef
 * Fichier de configuration.
 
 ---
-<!-- _backgroundColor: #282a36 -->
-<!-- _color: #f8f8f2 -->
 # 6. Installation de l'application et ses dépendances
 ## 6.3 Difficultés:
 
@@ -141,14 +123,14 @@ Le chef
     * Problème de sur-utlisation du fqdn.
 
 ---
-# 7 Retrospective de sprint.
+# 7 Retrospective du sprint.
 # 7.1 Qu'est ce qui c'est bien passé ?
 * On a bien échangé sur les différents problémes que l'on a rencontré.
 * On a partagé et on s'est soutenu tout le long du projet.
 * On a travaillé ensemble sur la partie deploiment de l'infrastructure et sur le début de la rédaction du projet.
 
 ---
-# 7 Retrospective de sprint.
+# 7 Retrospective du sprint.
 # 2. Qu'est ce qui ne c'est pas bien passé ?
 * On a fais le projet chacun de notre coté, on n'a pas assez travaillé ensemble. Du coup on a perdu beaucoup de temps alors que si on avait étè plus collaboratif on aurait pu tout faire et bien plus.
 * Répartition des taches. Il était difficile de répartir les taches car tout le monde voulait tout voir pour pouvoir apprendre.
